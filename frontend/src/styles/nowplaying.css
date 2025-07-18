@@ -1,0 +1,80 @@
+.now-playing-container {
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.main-header {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 20px;
+  color:  goldenrod;
+  width: fit-content;
+  cursor: default;
+
+}
+
+.movies-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    width: 100%;
+  }
+  
+  .movie-card {
+    width: 240px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    border: 1px solid #ccc;
+    margin-bottom: 38px;
+    transition: transform 0.2s ease;
+  }
+  
+  .movie-card:nth-child(even) {
+    margin-top: 30px;
+  }
+  
+  .movie-card:hover {
+    transform: scale(1.02);
+  }
+  
+
+.movie-card h3 {
+  font-size: 1.2rem;
+  margin: 10px;
+  color: #cccc;
+  padding:5px
+}
+
+.movie-card p {
+  font-size: 0.9rem;
+  color: #ccc;
+  margin: 5px 0;
+  padding: 0 10px;
+  cursor:default;
+}
+
+.movie-card img {
+  display: block;
+  margin: 10px auto;
+  max-width: 100%;
+  height: auto;
+  transition: all 0.6s ease-out;
+}
+
+.movie-card img:hover{
+    border-radius: 0px 2px 0px 4px; /* TL, TR, BR, BL */
+    border: 1px solid rgb(145, 148, 72);
+    box-shadow: 0 2px 6px rgba(243, 130, 130, 0.2);
+
+
+}
+
+.book-ticket{
+    margin: 10px;
+    padding: 0 auto;
+}
