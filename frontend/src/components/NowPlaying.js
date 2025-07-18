@@ -26,7 +26,13 @@ export const NowPlaying = () => {
   return (
     <div className='now-playing-container'>
       <h1 className='main-header'>Now Playing Movies</h1>
-      {loading && <span className='loading-spinner' />}
+      {loading && (<div className="spinner-overlay">
+  <span className="loading-spinner" />
+  <span className="loading-spinner delay1" />
+  <span className="loading-spinner delay2" />
+  <span className="loading-spinner delay3" />
+</div>
+)}
 
       <div className="movies-list">
         {movies.map((movie) => (
@@ -41,8 +47,8 @@ export const NowPlaying = () => {
             )}
             <p><strong>Language:</strong> {movie.language}</p>
             <p><strong>Release Date:</strong> {movie.release_date}</p>
-            <p><strong>Rating:</strong> {movie.vote_average}</p>
-            <button className='book-ticket' onClick={() => {sessionStorage.setItem('id',movie.id)}}>Book Ticket</button> 
+            <p><strong>Rating:</strong> {movie.vote_average?.toFixed(2)}</p>
+            <button className='book-ticket' onClick={() => {window.location.href='/overview';sessionStorage.setItem('id',movie.id)}}>Book Ticket</button> 
           </div>
         ))}
       </div>

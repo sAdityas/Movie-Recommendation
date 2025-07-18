@@ -1,0 +1,89 @@
+/* Main wrapper */
+.overview-wrapper {
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+}
+
+/* Blurred Background */
+.overview-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  filter: blur(12px);
+  z-index: -2;
+}
+
+/* Dark overlay on top of background */
+.overview-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.75);
+  z-index: -1;
+}
+
+/* Existing styles */
+.overview-container {
+  position: relative;
+  z-index: 1;
+  padding: 40px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.movie-overview {
+  display: flex;
+  gap: 50px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.poster-wrapper {
+  flex-shrink: 0;
+}
+
+.movie-poster {
+  border-radius: 10px;
+  width: 300px;
+  height: auto;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+.details-section {
+  max-width: 600px;
+}
+
+.book-btn {
+  background: #e50914;
+  color: white;
+  padding: 12px 24px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  margin-top: 20px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.book-btn:hover {
+  background: #b50710;
+}
+
+.movie-description h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.rating-row, .meta {
+  margin: 10px 0;
+  font-size: 1rem;
+}

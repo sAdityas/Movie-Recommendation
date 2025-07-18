@@ -56,18 +56,25 @@ cosine_sim = build_recommender(movie_df)
 @app.route('/', methods=['GET'])
 def get_movie_by_imdb():
     imdb_id = request.args.get('imdb_id')
-    if not imdb_id:
-        return jsonify({"error": "No IMDB ID Found."})
+    tmdb_id = request.args.get('tmdb_id')
 
-    url = f"https://api.themoviedb.org/3/find/{imdb_id}?api_key={TMDB_API_KEY}&external_source=imdb_id"
+    if not imdb_id and not tmdb_id:
+        return jsonify({"error": "No ID Found."})
+    if imdb_id:
+        url = f"https://api.themoviedb.org/3/find/{imdb_id}?api_key={TMDB_API_KEY}&external_source=imdb_id"
+    elif tmdb_id:
+        url = f"https://api.themoviedb.org/3/movie/{tmdb_id}?api_key={TMDB_API_KEY}"
+    print(url)
     response = requests.get(url)
     data = response.json()
-
-    movie = None
-    if data.get('movie_results'):
-        movie = data['movie_results'][0]
-    elif data.get('tv_results'):
-        movie = data['tv_results'][0]
+    if imdb_id:
+        movie = None
+        if data.get('movie_results'):
+            movie = data['movie_results'][0]
+        elif data.get('tv_results'):
+            movie = data['tv_results'][0]
+    else:
+        movie = data if data.get('id') else None
 
     if not movie:
         return jsonify({"error": "Movie or TV Show Not Found"}), 400
@@ -85,7 +92,7 @@ def get_movie_by_imdb():
             'original_language': movie.get('original_language', 'N/A'),
             'popularity': movie.get('popularity', 0.0),
             'vote_count': movie.get('vote_count', 0),
-            'vote_average': movie.get('vote_average', 0.0),
+            'vote_average': round(movie.get('vote_average', 0.0),1),
             'video': movie.get('video', False),
             'adult': movie.get('adult', False)
         })
