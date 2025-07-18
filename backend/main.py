@@ -91,7 +91,6 @@ def get_movie_by_imdb():
         })
     
 
-from flask import request, jsonify
 
 @app.route('/recommend', methods=['GET'])
 def recommend_api():
@@ -137,5 +136,47 @@ def recommend_api():
         'recommendations': recommendations
     }), 200
 
+
+
+@app.route('/nowPlaying', methods=["GET"])
+def nowPlaying():
+    base_url = "https://api.themoviedb.org/3/discover/movie"
+    image_base = "https://image.tmdb.org/t/p/w500"
+
+    # Hindi and English URLs
+    hindiURL = f"{base_url}?api_key={TMDB_API_KEY}&region=IN&with_original_language=hi&with_release_type=2"
+    englishURL = f"{base_url}?api_key={TMDB_API_KEY}&region=IN&with_original_language=en&with_release_type=2"
+
+    # Get responses
+    hindi_movies = requests.get(hindiURL).json().get('results', [])
+    english_movies = requests.get(englishURL).json().get('results', [])
+
+    details = []
+
+    def process_movie_list(movie_list):
+        return [
+            {
+                "id": m.get("id"),
+                "title": m.get("title"),
+                "overview": m.get("overview"),
+                "poster_path": f"{image_base}{m.get('poster_path')}" if m.get('poster_path') else None,
+                "release_date": m.get("release_date"),
+                "vote_average": m.get("vote_average"),
+                "language": m.get("original_language")
+            }
+            for m in movie_list[:10]
+        ]
+
+    details.extend(process_movie_list(hindi_movies))
+    details.extend(process_movie_list(english_movies))
+
+    if not details:
+        return jsonify({"error": "No movies found"}), 404
+
+    return jsonify({"now_playing": details})
+
+
+    
+
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True,host="0.0.0.0")
