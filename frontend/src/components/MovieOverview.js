@@ -6,6 +6,8 @@ export const MovieOverview = () => {
   const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState(false);
   const id = sessionStorage.getItem('id');
+  // eslint-disable-next-line no-unused-vars
+  const [genre , setGenres] = useState(null)
 
   useEffect(() => {
     const fetchMovie = async () => {
@@ -13,14 +15,17 @@ export const MovieOverview = () => {
       try {
         const response = await axios.get(`http://localhost:5000/?tmdb_id=${id}`);
         setMovie(response.data || null);
+        setGenres(response.data.genre)
+        console.log(response.data)
       } catch (err) {
-        console.error("Error fetching movie:", err);
-        setMovie(null);
+        if (err.resonse){
+            setMovie(err)
+        }
       }
       setLoading(false);
     };
     fetchMovie();
-  }, []);
+  }, [id]);
 
   if (loading) {
     return (
@@ -46,7 +51,7 @@ export const MovieOverview = () => {
       <div
         className="overview-bg"
         style={{
-          backgroundImage: `url(https://image.tmdb.org/t/p/w780${movie.poster_path})`,
+          backgroundImage: `url(https://image.tmdb.org/t/p/w780${movie.backdrop_path})`,
         }}
       />
       <div className="overview-overlay" />
@@ -69,19 +74,43 @@ export const MovieOverview = () => {
               alt="Movie Poster"
             />
           </div>
-
+              
           <div className="details-section">
-            <h1 className="movie-title">{movie.title}</h1>
+            {movie.title === movie.original_title && (
+               <> <h1 className="movie-title">{movie.title}</h1>
+                <h3 className='tagLine'>{movie.tagline}</h3></>
+            )}
+            {movie.title !== movie.original_title && (
+                <><h1 className="movie-title">{movie.title}</h1>
+                <h3 className="movie-title">{movie.original_title}</h3>
+                <h5 className='tagLine'>{movie.tagline}</h5></>
+            )}
+            
             <div className="rating-row">
               <span className="star">⭐</span>
               <span className="rating">{movie.vote_average}/10</span>
               <span className="votes">({movie.vote_count} votes)</span>
+              {movie.genre_names && movie.genre_names.length > 0 && (
+                <div className='genres'>
+                    <span>🎭Genre: </span>
+                    {movie.genre_names.map((genre,id) => (
+                        <React.Fragment key={id}>
+                        
+                        <span key={id} className='genre-badge'>{genre.name}</span>
+                        {id < movie.genre_names.length - 1 && (
+                            <span> / </span>
+                        )}
+                        </React.Fragment>
+                    ))}
+                </div>
+              )}
             </div>
             <div className="meta">
               <span>🎬 {movie.release_date}</span>
-              <span>🔥 Popularity: {movie.popularity.toFixed(1)}</span>
+              <span> 🔥 Popularity: {movie.popularity.toFixed(1)}</span><br/>
+              <span>📽️ IMDB ID: {movie.imdb_id}</span>
             </div>
-            <button className="book-btn">Book Tickets</button>
+            <button className="book-btn" onClick={(e) => {window.location.href='/seats'; e.preventDefault()}}>Book Tickets</button>
           </div>
         </div>
 

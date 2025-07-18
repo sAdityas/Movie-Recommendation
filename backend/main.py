@@ -78,6 +78,7 @@ def get_movie_by_imdb():
 
     if not movie:
         return jsonify({"error": "Movie or TV Show Not Found"}), 400
+
     else:
         return jsonify({
             'raw_data' : data,
@@ -86,9 +87,12 @@ def get_movie_by_imdb():
             'overview': movie.get('overview', 'N/A'),
             'release_date': movie.get('release_date') or movie.get('first_air_date', 'N/A'),
             'genre_ids': movie.get('genre_ids', []),
+            'genre_names': movie.get('genres',[]),
             'poster_path': movie.get('poster_path', ''),
             'backdrop_path': movie.get('backdrop_path', ''),
             'tmdb_id': movie.get('id'),
+            'imdb_id':movie.get('imdb_id'),
+            'tagline': movie.get('tagline'),
             'original_language': movie.get('original_language', 'N/A'),
             'popularity': movie.get('popularity', 0.0),
             'vote_count': movie.get('vote_count', 0),
