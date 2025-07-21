@@ -1,0 +1,114 @@
+/* Outer container for the theatres */
+.theatre-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f5f6fa;
+  padding: 50px 60px;
+  margin: 30px auto;
+  gap: 20px;
+  max-width: 900px;
+}
+
+/* Single theatre card */
+.theatre {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 25px 30px;
+  width: 100%;
+  box-shadow: 3px 5px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: background-color 0.4s ease, box-shadow 0.4s ease;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Hover for theatre card */
+.theatre:hover {
+  background-color: #f0f0f0;
+  box-shadow: 20px 16px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* Theatre name and location label */
+.theatre-name label,
+.location label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #2c3e50;
+  text-align: left;
+}
+
+/* Optional: Make location aligned with name */
+.location {
+  margin-top: 10px;
+}
+
+/* Theatre logo image */
+.theatre-logo img {
+  width: 60px;
+  height: auto;
+  margin-bottom: 15px;
+  object-fit: contain;
+}
+
+/* Movie timing block */
+.movie-timing .timing {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+/* List item for each timing */
+.movie-timing li {
+  display: flex;
+  align-items: center;
+}
+
+/* Timing button */
+.timing-btn {
+  padding: 8px 14px;
+  background-color: #ecf0f1;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Active timing button */
+.timing-btn.active {
+  background-color: #2ecc71;
+  color: white;
+}
+
+/* Hover effect on timing */
+.timing-btn:hover {
+  background-color: #dcdde1;
+}
+
+/* Booking button container */
+.bookbtn {
+  margin-top: 20px;
+}
+
+/* Booking button */
+.bookbtn button {
+  padding: 10px 24px;
+  background-color: #2980b9;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Disabled state for book button */
+.bookbtn button:disabled {
+  background-color: #95a5a6;
+  cursor: not-allowed;
+}

@@ -17,7 +17,7 @@ function App() {
       <Route path="/nowPlaying" element={<NowPlaying />} />
       <Route path='/overview' element={<MovieOverview />} />
       <Route path='/seats' element={<SeatSelect />} />
-      <Route path='/theatre' element={SelectTheatre} />
+      <Route path='/theatre' element={<SelectTheatre />} />
     </Routes>
     </BrowserRouter>
  )

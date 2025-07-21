@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import '../styles/seatSelect.css';
+import axios from 'axios';
+
 
 const LEFT_BLOCK_ROWS = 10;
 const RIGHT_BLOCK_ROWS = 10;
@@ -17,13 +19,43 @@ export const SeatSelect = () => {
   const [selectedSeats, setSelectedSeats] = useState([]);
 
   const toggleSeat = (seatId) => {
-    setSelectedSeats((prev) =>
-      prev.includes(seatId)
-        ? prev.filter((s) => s !== seatId)
-        : [...prev, seatId]
-    );
+    setSelectedSeats((prev) => {
+      const updated =
+        prev.includes(seatId)
+          ? prev.filter((s) => s !== seatId)
+          : [...prev, seatId];
+      
+      sessionStorage.setItem('seat', JSON.stringify(updated));
+      return updated;
+    });
   };
 
+  const handleSubmit = async(e) => {
+    if (e) e.preventDefault()
+      console.log("Pressed")
+    try{
+    const time = sessionStorage.getItem('time')
+    const seats = JSON.parse(sessionStorage.getItem('seat') || '[]')
+    const title = sessionStorage.getItem('title')
+    console.log("Confirming Ticket : ",seats,title)
+
+    if (!time || !title){
+      alert("Please select atleast one seats.")
+      return;
+    }
+      
+    await axios.post("http://127.0.0.1:5000/tkt/add", {
+      seats,
+      time,
+      title
+    });
+  }catch(error){
+    if (error.response){
+      console.log("Error:",error)
+    }
+  }
+
+  }
   const leftSeats = generateRows(LEFT_BLOCK_ROWS, 'Left');
   const rightSeats = generateRows(RIGHT_BLOCK_ROWS, 'Right');
 
@@ -72,7 +104,9 @@ export const SeatSelect = () => {
       <div className='selected-info'>
         🎟️ <strong>Selected Seats:</strong>{' '}
         {selectedSeats.length ? selectedSeats.join(', ') : 'None'}
+        
       </div>
+      <button type="button" onClick={ handleSubmit }>Confirm</button>
     </div>
   );
 };

@@ -34,6 +34,7 @@ const [movies, setMovies] = useState([]);
     });
     const recommendations = res.data?.recommendations || [];
     setRecs(recommendations);
+    console.log(recommendations)
     setId('');
     }catch (error) {
     if (error.response) {
@@ -97,8 +98,11 @@ const [movies, setMovies] = useState([]);
       {!loading && movies.length >= 1 && (
         <div className="recommendations-section">
           <h2>Recommendations Based on "{movies[0].title}"</h2>
+          
           {recs.length === 0 && loading? (
-            <p>No recommendations found.</p>
+            <>
+            <span className='loading-spinner'/>
+            <p>No recommendations found.</p></>
           ) : (
             <div className="recommendations">
               {recs.map((movie, idx) => (

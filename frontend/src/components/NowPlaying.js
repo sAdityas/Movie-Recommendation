@@ -48,7 +48,7 @@ export const NowPlaying = () => {
             <p><strong>Language:</strong> {movie.language}</p>
             <p><strong>Release Date:</strong> {movie.release_date}</p>
             <p><strong>Rating:</strong> {movie.vote_average?.toFixed(2)}</p>
-            <button className='book-ticket' onClick={() => {window.location.href='/overview';sessionStorage.setItem('id',movie.id)}}>Book Ticket</button> 
+            <button className='book-ticket' onClick={() => {window.location.href='/overview';sessionStorage.setItem('id',movie.id);sessionStorage.setItem('title',JSON.stringify(movie.title))}}>Book Ticket</button> 
           </div>
         ))}
       </div>

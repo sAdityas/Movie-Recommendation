@@ -110,7 +110,7 @@ export const MovieOverview = () => {
               <span> 🔥 Popularity: {movie.popularity.toFixed(1)}</span><br/>
               <span>📽️ IMDB ID: {movie.imdb_id}</span>
             </div>
-            <button className="book-btn" onClick={(e) => {window.location.href='/seats'; e.preventDefault()}}>Book Tickets</button>
+            <button className="book-btn" onClick={(e) => {window.location.href='/theatre'; e.preventDefault()}}>Book Tickets</button>
           </div>
         </div>
 
