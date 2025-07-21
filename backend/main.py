@@ -3,6 +3,7 @@ from flask_cors import CORS
 
 from models import db
 
+from routes.users import user
 from routes.ticket import tkt
 from routes.get_movie import get_movie_route
 from routes.recommend import recommend_route
@@ -19,6 +20,7 @@ app.register_blueprint(get_movie_route)
 app.register_blueprint(recommend_route)
 app.register_blueprint(now_playing_route)
 app.register_blueprint(tkt, url_prefix='/tkt')
+app.register_blueprint(user,url_prefix='/user')
 
 
 @app.before_request

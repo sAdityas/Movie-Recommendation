@@ -39,7 +39,7 @@ export const SeatSelect = () => {
     const title = sessionStorage.getItem('title')
     console.log("Confirming Ticket : ",seats,title)
 
-    if (!time || !title){
+    if (time ==='' || title.length===0 || seats.length===0){
       alert("Please select atleast one seats.")
       return;
     }
@@ -49,6 +49,8 @@ export const SeatSelect = () => {
       time,
       title
     });
+    setSelectedSeats([])
+    sessionStorage.removeItem('seat')
   }catch(error){
     if (error.response){
       console.log("Error:",error)

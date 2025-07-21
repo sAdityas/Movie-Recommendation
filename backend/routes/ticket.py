@@ -1,5 +1,6 @@
 from models.database import Ticket
 from flask import Flask, request, jsonify, Blueprint
+import random , string
 
 tkt = Blueprint('tkt',__name__)
 
@@ -14,10 +15,11 @@ def main_route():
 def add_route():
     data = request.get_json()
     seats = data.get('seats')
-    time = data.get('Time')
+    time = data.get('time')
     title = data.get('title')
+    bookingId = ''.join(random.choices(string.ascii_uppercase + string.digits, k=11))
 
-    print(seats,time,title)
+    print(seats,time,title,bookingId)
     return jsonify({
         "seats": seats
     })

@@ -9,7 +9,8 @@ with app.app_context():
         id=1,
         title='Sinners',
         time='11:30',
-        seats=['B12','B13']
+        seats=['B12','B13'],
+        bookingId = '21AA1W34F7C'
     )
 
     db.session.add(db1)

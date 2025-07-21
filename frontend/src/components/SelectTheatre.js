@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../styles/selectTheatre.css';
-import { theatres } from '../assests/Theatre';
+import { theatres } from '../data/Theatre';
 
 export const SelectTheatre = () => {
   const [selectedTimes, setSelectedTimes] = useState({});
