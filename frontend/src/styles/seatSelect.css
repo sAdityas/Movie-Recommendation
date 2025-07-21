@@ -1,107 +1,92 @@
-.seat-selection-container {
-    max-width: 88%;
-    margin: 40px auto;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column-reverse;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    font-family: Arial, sans-serif;
-  }
-  
-  .screen {
-    width: 800px;
-    background-color: #504b4b;
-    padding: 12px 0;
-    margin-bottom: 14px; mask-image: radial-gradient(50% 14px at top, transparent 95%, black),
+.theater-container {
+  text-align: center;
+  font-family: Arial, sans-serif;
+  padding: 30px;
+  max-width: 1000px;
+  margin: 0 auto;
+  background-color: #0c0c0c;
+  color: white;
+  border-radius: 10px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+.projectors {
+  font-size: 24px;
+  margin-bottom: 5px;
+  cursor: default;
+}
+
+.screen {
+  font-size: 18px;
+  font-weight: bold;
+  background-color: #444;
+  border-radius: 10px;
+  padding: 10px;
+  width: 60%;
+  margin: 0 auto 40px auto;
+  box-shadow: 0px 3px 10px rgba(255, 255, 255, 0.1);
+  mask-image: radial-gradient(50% 14px at top, transparent 95%, black),
     radial-gradient(50% 14px at bottom, transparent 95%, black);
     mask-repeat: no-repeat;
     mask-position: top, bottom;
-    mask-size: 100% 30px, 100% 30px;    
-    font-weight: bold;
-    font-size: 15px;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.15);
-    margin-top: 80px;
-  }
-  
-  .seats-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit,40px);
-    gap: 10px;
-    justify-content: center; /* <-- centers the grid horizontally */
-    width: 78%;       /* <-- important to avoid full width */
-    margin: 0 auto;           /* <-- centers the container block itself */
-    margin-bottom: 50px;
-    grid-column: span 10;
-  }
-  
-  .divider{
-    display: inline-block;
-    width: 20px;
-    padding-left: 20px;
-  }
-  .seat {
-    border-radius: 8px;
-    padding: 6px;
-    cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
-    text-align: center;
-    user-select: none;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .seat:hover {
-    transform: translateY(-2px);
-  }
-  
-  .seat.selected {
-    background-color: #4caf50; /* green */
-  }
-  
-  .chair-img {
-    width: 32px;
-    height: 32px;
-    margin-bottom: 4px;
-    filter: grayscale(30%);
-    background-size: cover;
-    float: left;
-    transition: all 0.2s ease;
-  }
-  
-  .chair-img:hover{
-    
-    box-shadow: 0 4px 10px rgb(0, 253, 177);
-  }
-  .seat.selected .chair-img {
-    filter: none;
-    transform: translate(0,2px);
-  }
-  
-  .seat-label {
-    font-size: 14px;
-    font-weight: 500;
-  }
-  
-  .selected-info {
-    display: flex;
-    background-color: #1e1c2e;
-    margin: 0 auto;
-    margin-bottom: 80px;
-    font-size: 16px;
-    font-weight: 600;
-    transition: all 3s ease;
-  }
+    mask-size: 100% 30px, 100% 30px; 
+  cursor: default;  
+}
 
-  .selected-info strong{
-    margin: auto;
-    justify-content: center;
-    align-items: center;
-    
-  }
-  
+.seating-layout {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 30px;
+}
+
+.seat-block {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.seat-row {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.seat {
+  font-size: 24px;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  padding: 6px;
+  border-radius: 6px;
+}
+
+.seat:hover {
+  transform: scale(1.1);
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.seat.selected {
+  background-color: #4caf50;
+  border: 2px solid #81c784;
+  border-radius: 6px;
+}
+
+.aisle {
+  writing-mode: vertical-lr;
+  font-size: 14px;
+  letter-spacing: 3px;
+  color: #aaa;
+  padding: 5px;
+  cursor: default;
+}
+
+.selected-info {
+  margin-top: 40px;
+  font-size: 16px;
+  font-weight: 500;
+  background-color: #1e1c2e;
+  padding: 10px 15px;
+  border-radius: 6px;
+  display: inline-block;
+  cursor: default;
+}

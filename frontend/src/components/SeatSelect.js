@@ -1,53 +1,78 @@
-import React, { useState } from 'react'
-import '../styles/seatSelect.css'
-import Chair from '../assests/Chair.jpg'
+import React, { useState } from 'react';
+import '../styles/seatSelect.css';
 
+const LEFT_BLOCK_ROWS = 10;
+const RIGHT_BLOCK_ROWS = 10;
+const SEATS_PER_BLOCK = 3;
 
-const rows = ['A','B','C','D','E','F']
-const cols = 17;
+const generateRows = (rows, block = 'Left') =>
+  [...Array(rows)].map((_, rowIndex) => {
+    const rowLabel = String.fromCharCode(65 + rowIndex); // 'A', 'B', etc.
+    return Array(SEATS_PER_BLOCK)
+      .fill(0)
+      .map((_, seatIndex) => `${block}-${rowLabel}${seatIndex + 1}`);
+  });
 
 export const SeatSelect = () => {
+  const [selectedSeats, setSelectedSeats] = useState([]);
 
-    const [selectedSeats , setSelectedSeats] = useState([])
+  const toggleSeat = (seatId) => {
+    setSelectedSeats((prev) =>
+      prev.includes(seatId)
+        ? prev.filter((s) => s !== seatId)
+        : [...prev, seatId]
+    );
+  };
 
-    const toggleSeat = (seat) =>{
-        setSelectedSeats((prev) => prev.includes(seat) ? prev.filter((s) => s !== seat) : [...prev , seat]);
-    };
-
+  const leftSeats = generateRows(LEFT_BLOCK_ROWS, 'Left');
+  const rightSeats = generateRows(RIGHT_BLOCK_ROWS, 'Right');
 
   return (
-    <div className='seat-selection-container'>
-        <div className='screen'>
-            Screen
-            </div>
-            <div className='seats-container'>
-                {rows.map((row) => Array.from({length: cols}, (_,colIndex) => {
-                    const seat = `${row}${colIndex + 1}`
-                    const isSelected = selectedSeats.includes(seat);
-                    return (
-                            <div
-                            key={seat}
-                            className={`seat ${isSelected ? 'selected' : ''}`}
-                            onClick={() => toggleSeat(seat)}
-                            >
-                            {parseInt(seat.slice(1)) === 5 && (
-                            <div className="divider"></div> // insert aisle after every 4 seats
-                            )}
+    <div className='theater-container'>
+      <div className='projectors'>🎬 🎬</div>
 
-                            <img className="chair-img" src={Chair} alt="Chair" />
-                            <span className="seat-label">{seat}</span>
-                            </div>
+      <div className='screen'>SCREEN</div>
 
-                        )
-                }
-                )
-            )}
+      <div className='seating-layout'>
+        <div className='seat-block'>
+          {leftSeats.map((row, rowIndex) => (
+            <div key={`left-row-${rowIndex}`} className='seat-row'>
+              {row.map((seat) => (
+                <div
+                  key={seat}
+                  className={`seat ${selectedSeats.includes(seat) ? 'selected' : ''}`}
+                  onClick={() => toggleSeat(seat)}
+                >
+                  💺
+                </div>
+              ))}
             </div>
-            <div className='selected-info'>
-                <strong>Selected Seat:</strong>{selectedSeats.join(', ' || 'None')}
-            </div>
-        
+          ))}
+        </div>
 
+        <div className='aisle'>AISLE</div>
+
+        <div className='seat-block'>
+          {rightSeats.map((row, rowIndex) => (
+            <div key={`right-row-${rowIndex}`} className='seat-row'>
+              {row.map((seat) => (
+                <div
+                  key={seat}
+                  className={`seat ${selectedSeats.includes(seat) ? 'selected' : ''}`}
+                  onClick={() => toggleSeat(seat)}
+                >
+                  💺
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className='selected-info'>
+        🎟️ <strong>Selected Seats:</strong>{' '}
+        {selectedSeats.length ? selectedSeats.join(', ') : 'None'}
+      </div>
     </div>
-  )
-}
+  );
+};
