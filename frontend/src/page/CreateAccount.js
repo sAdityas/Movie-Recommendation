@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, } from 'react'
+import  {useNavigate} from 'react-router-dom'
 import '../styles/createaccount.css';
 import axios from 'axios';
 
 export const CreateAccount = () => {
+  const navigate = useNavigate()
   const [form, setForm] = useState({
     firstname: '',
     lastname: '',
@@ -154,14 +156,9 @@ export const CreateAccount = () => {
               <span className="checkbox-custom"></span>
               I agree to the <a href="#" className="form-link">Terms & Conditions</a>
             </label>
-            <button type="submit" className="primary-btn">Create account</button>
+            <button type="subimit" className="primary-btn" 
+  disabled={!form.firstname || !form.lastname || !form.email || !form.passwd || !form.agree} onClick={() => navigate('/',{replace: true})}>Create account</button>
           </form>
-
-          <div className="divider">Or register with</div>
-          <div className="social-row">
-            <button type="button" className="social-btn google-btn">Google</button>
-            <button type="button" className="social-btn apple-btn">Apple</button>
-          </div>
         </div>
       </div>
     </div>

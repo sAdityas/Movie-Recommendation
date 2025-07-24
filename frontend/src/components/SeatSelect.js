@@ -31,13 +31,25 @@ export const SeatSelect = () => {
   };
 
   const handleSubmit = async(e) => {
-    if (e) e.preventDefault()
-      console.log("Pressed")
+     e.preventDefault()
     try{
     const time = sessionStorage.getItem('time')
     const seats = JSON.parse(sessionStorage.getItem('seat') || '[]')
     const title = sessionStorage.getItem('title')
-    console.log("Confirming Ticket : ",seats,title)
+
+      function generateBookingId(len = 11){
+        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'
+        let result = ''
+        for (let i = 0; i < len; i++ ){
+          result += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+        return result;
+      }
+
+
+    const bookingId = generateBookingId()
+    sessionStorage.setItem('bookingId',bookingId)
+    console.log("Confirming Ticket : ",seats,title,bookingId)
 
     if (time ==='' || title.length===0 || seats.length===0){
       alert("Please select atleast one seats.")
@@ -47,10 +59,10 @@ export const SeatSelect = () => {
     await axios.post("http://127.0.0.1:5000/tkt/add", {
       seats,
       time,
-      title
+      title,
+      bookingId
     });
     setSelectedSeats([])
-    sessionStorage.removeItem('seat')
   }catch(error){
     if (error.response){
       console.log("Error:",error)

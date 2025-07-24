@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../styles/loginpage.css';
 import axios from 'axios';
 
 export const LoginPage = () => {
-  const [message, setMessage] = useState('')
+  const navigate = useNavigate()
+  const [message, setMessage] = useState()
   const [form, setForm] = useState({ email: '', passwd: '' });
 
   const handleChange = (e) => {
@@ -19,11 +21,8 @@ export const LoginPage = () => {
         email,
         passwd
       });
-      setMessage(res.response?.data?.success)
-      setForm({
-        email: '',
-        passwd: ''
-      })
+      setMessage(res.data?.success)
+      navigate('/nowPlaying',{replace: true})
     }catch(err){
       if(err.response){
         setMessage(err.response?.data?.error)
@@ -54,19 +53,14 @@ export const LoginPage = () => {
             className="form-input"
             placeholder="Password"
             type="password"
-            name="password"
-            value={form.password}
+            name="passwd"
+            value={form.passwd}
             onChange={handleChange}
             required
           />
           <button type="submit" className="primary-btn">Log In</button>
         </form>
-        <div className="divider">Or log in with</div>
         <p className={`message ${message === 'Wrong Password Entered' ? 'error' : 'success'}`}>{message}</p>
-        <div className="social-row">
-          <button type="button" className="social-btn google-btn">Google</button>
-          <button type="button" className="social-btn apple-btn">Apple</button>
-        </div>
       </div>
     </div>
   );

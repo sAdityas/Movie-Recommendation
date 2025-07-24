@@ -17,7 +17,7 @@ def add_route():
     seats = data.get('seats')
     time = data.get('time')
     title = data.get('title')
-    bookingId = ''.join(random.choices(string.ascii_uppercase + string.digits, k=11))
+    bookingId = data.get('bookingId')
 
     print(seats,time,title,bookingId)
     return jsonify({

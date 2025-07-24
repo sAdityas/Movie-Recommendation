@@ -71,7 +71,8 @@
 /* Timing button */
 .timing-btn {
   padding: 8px 14px;
-  background-color: #ecf0f1;
+  background-color: #d0e1e6;
+  color: rgba(0, 0, 0, 0.678);
   border: none;
   border-radius: 6px;
   font-weight: 600;
@@ -87,7 +88,7 @@
 
 /* Hover effect on timing */
 .timing-btn:hover {
-  background-color: #dcdde1;
+  background-color: #e5e7ed;
 }
 
 /* Booking button container */
