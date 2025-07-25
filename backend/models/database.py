@@ -10,6 +10,7 @@ class Ticket(db.Model):
     title = db.Column(db.String(255), nullable=False)
     time = db.Column(db.String(255), nullable=False)
     seats = db.Column(db.PickleType, nullable=False)
+    price = db.Column(db.Integer,nullable=False)
 
     user = db.relationship('User',back_populates='tickets')
 
@@ -19,7 +20,9 @@ class Ticket(db.Model):
             "title" : self.title,
             "time" : self.time,
             "seats" : self.seats,
-            "userid" : self.userid
+            "userid" : self.userid,
+            'price' : self.price,
+            'bookingId' : self.bookingId
         }
         
     

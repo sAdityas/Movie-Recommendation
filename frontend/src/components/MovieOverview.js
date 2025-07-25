@@ -16,6 +16,8 @@ export const MovieOverview = () => {
         const response = await axios.get(`http://localhost:5000/?tmdb_id=${id}`);
         setMovie(response.data || null);
         setGenres(response.data.genre)
+        let price = response.data?.price
+        localStorage.setItem('price',price)
         console.log(response.data)
       } catch (err) {
         if (err.resonse){
@@ -89,7 +91,7 @@ export const MovieOverview = () => {
             <div className="rating-row">
               <span className="star">⭐</span>
               <span className="rating">{movie.vote_average}/10</span>
-              <span className="votes">({movie.vote_count} votes)</span>
+              <span className="votes">({movie.vote_count}votes)</span>
               {movie.genre_names && movie.genre_names.length > 0 && (
                 <div className='genres'>
                     <span>🎭Genre: </span>
@@ -108,9 +110,11 @@ export const MovieOverview = () => {
             <div className="meta">
               <span>🎬 {movie.release_date}</span>
               <span> 🔥 Popularity: {movie.popularity.toFixed(1)}</span><br/>
-              <span>📽️ IMDB ID: {movie.imdb_id}</span>
+              <span>📽️ IMDB ID: {movie.imdb_id}</span><br />
+              <span className='price-span'>Price: {movie.price}</span>
             </div>
             <button className="book-btn" onClick={(e) => {window.location.href='/theatre'; e.preventDefault()}}>Book Tickets</button>
+            
           </div>
         </div>
 

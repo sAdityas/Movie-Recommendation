@@ -87,3 +87,25 @@
   margin: 10px 0;
   font-size: 1rem;
 }
+
+.price-span {
+  display: inline-block;
+  background-color: #5e421700;       /* warm orange/yellow background for attention */
+  color: #fff;                    /* white text */
+  width: 100px;
+  text-align: center;
+  font-weight: 1000;               /* bold */
+  font-size: 1.1rem;              /* slightly larger */
+  padding: 4px 10px;              /* some spacing around */
+  margin-top: 25px;
+  border-radius: 8px;             /* rounded corners */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.15);  /* subtle shadow */
+  user-select: none;              /* prevent text selection */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color:azure;
+}
+
+.price-span::after {
+  content: "₹ ";
+  font-weight: 600;
+}

@@ -4,15 +4,17 @@ from models.users import User
 from main import app
 
 with app.app_context():
+    db.drop_all()
     db.create_all()
 
     db1 = Ticket(
         id=1,
         title='Sinners',
         time='11:30',
-        seats=['B12','B13'],
+        seats=['Right-H2','Right-H3'],
         bookingId = '21AA1W34F7C',
-        userid = 1
+        userid = 1,
+        price = 250,
     )
 
     db2 = User(

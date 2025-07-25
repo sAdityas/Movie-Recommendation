@@ -71,6 +71,13 @@
   border-radius: 6px;
 }
 
+
+.seat.disabled {
+  background-color: red;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
 .aisle {
   writing-mode: vertical-lr;
   font-size: 14px;
