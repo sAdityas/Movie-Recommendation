@@ -1,8 +1,19 @@
 import React, { useState } from 'react';
 import '../styles/selectTheatre.css';
 import { theatres } from '../data/Theatre';
+import P from "../assests/P.png"
+import I from "../assests/I.png"
+import A from "../assests/A.png"
 
 export const SelectTheatre = () => {
+  
+  const getLogo = (name) => {
+    if (name.toUpperCase().includes("PVR")) return P;
+    if (name.toUpperCase().includes("INOX")) return I;
+    if (name.includes("Abhiruchi")) return A;
+    return null; // or a default image
+  };
+  
   const [selectedTimes, setSelectedTimes] = useState({});
 
   const handleTimeClick = (theatreIndex, time) => {
@@ -42,7 +53,7 @@ export const SelectTheatre = () => {
           </div>
 
           <div className="theatre-logo">
-            <img src="/" alt={`${theatre.name} logo`} />
+            <img src={getLogo[theatre.name]} alt={theatre.name} />
           </div>
 
           <div className="movie-timing">

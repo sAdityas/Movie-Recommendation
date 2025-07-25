@@ -15,18 +15,23 @@ const generateRows = (rows, block = 'Left') =>
   });
 
 export const SeatSelect = () => {
+  const time = sessionStorage.getItem('time')
+  const title = sessionStorage.getItem('title')
   const [price, setPrice] = useState(0);
   const [selectedSeats, setSelectedSeats] = useState([]);
   const [bookedSeats, setBookedSeats] = useState([]);
   const [userid , setUserId] = useState(0)
+  const [done , setDone] = useState(false)
 
   useEffect(() => {
     // ✅ Retrieve from sessionStorage
     const seatsFromStorage = JSON.parse(sessionStorage.getItem('seat') || "[]");
     console.log("Seats loaded from sessionStorage:", seatsFromStorage);
 
-    // ✅ Fetch booked seats from backend
-    axios.get("http://127.0.0.1:5000/tkt/seat")
+    axios.post("http://127.0.0.1:5000/tkt/seat", {
+      title,
+      time
+    })
       .then(res => {
         setBookedSeats(res.data.seats || []);
         console.log("🎟️ Booked seats from backend:", res.data.seats);
@@ -98,8 +103,11 @@ export const SeatSelect = () => {
 
       alert("Booking successful!");
       setSelectedSeats([]);
-
+      setDone(true)
+      sessionStorage.setItem('seatDone',done)
+      window.location.replace("/finalize",{replace: true})
     } catch (error) {
+      setDone(false)
       if (error.response) {
         console.error("Error:", error);
         alert(error.response?.data?.error || "Something went wrong");

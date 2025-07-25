@@ -10,16 +10,19 @@ import { SeatSelect } from './components/SeatSelect';
 import { SelectTheatre } from './components/SelectTheatre';
 import { CreateAccount } from './page/CreateAccount';
 import { LoginPage } from './page/LoginPage';
+import { Finalize } from './page/Finalize';
+import { LastPage } from './page/LastPage';
 
 function App() {
   const userID = localStorage.getItem('userID');
+  const done = sessionStorage.getItem('seatDone')
   const isLoggedIn = !!userID
   console.log(isLoggedIn)
   return (
     <BrowserRouter>
       <Routes>
         {/* If NOT logged in, allow ONLY '/' and '/create-account' */}
-        {!isLoggedIn && (
+        {!isLoggedIn && !done && (
           
           <>
             <Route path="/" element={<LoginPage />} />
@@ -43,6 +46,12 @@ function App() {
             <Route path="/create-account" element={<Navigate to="/nowPlaying" replace />} />
             {/* Catch-all: redirect to overview */}
             <Route path="*" element={<Navigate to="/nowPlaying" replace />} />
+          </>
+        )}
+        {isLoggedIn && done &&(
+          <>
+          <Route path='/finalize' element={<Finalize />} />
+          <Route path='/p1' element={<LastPage />} />
           </>
         )}
       </Routes>

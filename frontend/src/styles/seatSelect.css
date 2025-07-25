@@ -11,12 +11,14 @@
 }
 
 .projectors {
+  user-select: none;
   font-size: 24px;
   margin-bottom: 5px;
   cursor: default;
 }
 
 .screen {
+  user-select: none;
   font-size: 18px;
   font-weight: bold;
   background-color: #444;
@@ -34,6 +36,7 @@
 }
 
 .seating-layout {
+  user-select: none;
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -88,6 +91,7 @@
 }
 
 .selected-info {
+  user-select: none;
   margin-top: 40px;
   font-size: 16px;
   font-weight: 500;

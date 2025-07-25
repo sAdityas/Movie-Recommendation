@@ -1,0 +1,61 @@
+.last-page-container {
+    max-width: 600px;
+    margin: 40px auto;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    display: flex; /* good for clearfix, keeps container height */
+    flex-direction: column;
+  }
+  
+  .heading {
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold; /* optionally add bold for headings */
+    color: #fff;        /* assuming dark bg, white text looks better */
+  }
+  
+  .ticket-card {
+    background: #2c2c3e;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    color: #eee;           /* text color for readability in dark bg */
+    margin-bottom: 15px;   /* add some spacing if multiple cards */
+  }
+  
+  .download-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #4CAF50; /* pleasant green */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 16px;
+  }
+  
+  .download-btn:hover {
+    background-color: #45a049;
+  }
+  
+  .home-btn {
+    margin: 10px 0;
+    padding: 10px 20px;
+    width: max-content;
+    justify-content: flex-start; /* better alignment if it's a flex container */
+    background-color: #2196F3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    display: inline-flex; /* so justify-content works */
+    align-items: center;
+    transition: background-color 0.3s ease;
+  }
+  
+  .home-btn:hover {
+    background-color: #1976D2;
+  }
+  

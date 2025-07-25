@@ -5,6 +5,7 @@ from models import db
 
 from routes.users import user
 from routes.ticket import tkt
+from routes.export import export
 from routes.get_movie import get_movie_route
 from routes.recommend import recommend_route
 from routes.now_playing import now_playing_route
@@ -19,8 +20,10 @@ db.init_app(app)
 app.register_blueprint(get_movie_route)
 app.register_blueprint(recommend_route)
 app.register_blueprint(now_playing_route)
+app.register_blueprint(export, url_prefix='/exp')
 app.register_blueprint(tkt, url_prefix='/tkt')
 app.register_blueprint(user,url_prefix='/user')
+
 
 
 @app.before_request

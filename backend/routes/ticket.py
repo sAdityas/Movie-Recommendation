@@ -38,23 +38,33 @@ def add_route():
     })
 
 
-@tkt.route("/seat", methods=["GET"])
+@tkt.route("/seat", methods=["POST"])
 def get_seat():
-    tickets = Ticket.query.all()
+    data = request.get_json()
+    title = data.get('title')
+    time = data.get('time')
+
+    if not title or not time:
+        return jsonify({"error": "Missing title or time"}), 400
+
+    # Filter tickets by title and time
+    tickets = Ticket.query.filter_by(title=title, time=time).all()
 
     all_seats = []
     for ticket in tickets:
         if ticket.seats:
-            all_seats.extend(ticket.seats)  # No need to split because PickleType is already a list
-    print("Combined seats:", all_seats)
+            all_seats.extend(ticket.seats)  # PickleType field is already a list
+
+    print("Disabled seats for", title, "at", time, "=>", all_seats)
+    
     return jsonify({
         'seats': all_seats
     })
 
 
+
 @tkt.route('/finalize/<int:userid>', methods=['GET'])
-def finalize(userid):
-    # Query all tickets for user_id
+def finalize(userid):    # Query all tickets for user_id
     tickets = Ticket.query.filter_by(userid=userid).all()
 
     if not tickets:
@@ -66,3 +76,4 @@ def finalize(userid):
     return jsonify({
         "data": tickets_data
     })
+
