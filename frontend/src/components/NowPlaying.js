@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../styles/nowplaying.css';
 
 export const NowPlaying = () => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -23,8 +25,17 @@ export const NowPlaying = () => {
     fetchMovies();
   }, []); // empty dependency array ensures it runs once on mount
 
+  const handleLogout = () => {
+    localStorage.removeItem("userID")
+    window.location.replace('/',{replace : true})
+  }
   return (
     <div className='now-playing-container'>
+      
+      
+      <div>
+        <button className='logout-btn' onClick={handleLogout}>Logout</button>
+      </div>
       <h1 className='main-header'>Now Playing Movies</h1>
       {loading && (<div className="spinner-overlay">
   <span className="loading-spinner" />

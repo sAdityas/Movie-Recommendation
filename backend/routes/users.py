@@ -50,6 +50,7 @@ def login():
         return jsonify({'error': 'Email Id Invalid'}), 404
 
     if check_password_hash(user.passwd, passwd):
-        return jsonify({'success': 'Login Successful'}), 200
+        print(user.id)
+        return jsonify({'success': 'Login Successful', 'id' : f"{user.id}"}), 200
     else:
         return jsonify({'error': 'Wrong Password Entered'}), 401

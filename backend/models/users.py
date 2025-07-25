@@ -8,3 +8,5 @@ class User(db.Model):
     lastname = db.Column(db.String(255), nullable=False)
     email = db.Column(db.String(255), nullable=False, unique=True)
     passwd = db.Column(db.String(255), nullable=False)
+
+    tickets = db.relationship('Ticket',back_populates='user',cascade='all,delete-orphan')

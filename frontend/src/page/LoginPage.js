@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import '../styles/loginpage.css';
 import axios from 'axios';
 
 export const LoginPage = () => {
-  const navigate = useNavigate()
   const [message, setMessage] = useState()
   const [form, setForm] = useState({ email: '', passwd: '' });
 
@@ -21,8 +19,17 @@ export const LoginPage = () => {
         email,
         passwd
       });
+      if (res.data){
+        console.log('Got User User ID',res.data.id)
+        localStorage.setItem('userID' , res.data.id)
+        window.location.replace('/nowPlaying')
+      }
+      else{
+        console.log("NO ID FOUND")
+        setMessage(res.data.error)
+        return;
+      }
       setMessage(res.data?.success)
-      navigate('/nowPlaying',{replace: true})
     }catch(err){
       if(err.response){
         setMessage(err.response?.data?.error)
@@ -58,7 +65,7 @@ export const LoginPage = () => {
             onChange={handleChange}
             required
           />
-          <button type="submit" className="primary-btn">Log In</button>
+          <button disabled={!form.email && !form.passed} type="submit" className="primary-btn">Log In</button>
         </form>
         <p className={`message ${message === 'Wrong Password Entered' ? 'error' : 'success'}`}>{message}</p>
       </div>

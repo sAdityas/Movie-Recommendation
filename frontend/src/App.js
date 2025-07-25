@@ -1,5 +1,5 @@
 
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Recommend from './components/Recommend';
 import { NowPlaying } from './components/NowPlaying';
 
@@ -12,19 +12,42 @@ import { CreateAccount } from './page/CreateAccount';
 import { LoginPage } from './page/LoginPage';
 
 function App() {
- return(
-  <BrowserRouter>
-    <Routes>
-      <Route path="/create-account" element={<CreateAccount  />} />
-      <Route path="/nowPlaying" element={<NowPlaying />} />
-      <Route path='/overview' element={<MovieOverview />} />
-      <Route path='/seats' element={<SeatSelect />} />
-      <Route path='/theatre' element={<SelectTheatre />} />
-      <Route path='/recommend' element={<Recommend />} />
-      <Route path='/' element={<LoginPage />} />
-    </Routes>
+  const userID = localStorage.getItem('userID');
+  const isLoggedIn = !!userID
+  console.log(isLoggedIn)
+  return (
+    <BrowserRouter>
+      <Routes>
+        {/* If NOT logged in, allow ONLY '/' and '/create-account' */}
+        {!isLoggedIn && (
+          
+          <>
+            <Route path="/" element={<LoginPage />} />
+            <Route path="/create-account" element={<CreateAccount />} />
+            {/* Any other route redirects to login */}
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </>
+        )}
+
+        {/* If logged in, allow access to these routes */}
+        {isLoggedIn && (
+          
+          <>
+            <Route path="/nowPlaying" element={<NowPlaying />} />
+            <Route path="/overview" element={<MovieOverview />} />
+            <Route path="/seats" element={<SeatSelect />} />
+            <Route path="/theatre" element={<SelectTheatre />} />
+            <Route path="/recommend" element={<Recommend />} />
+            {/* Redirect login and create-account to overview if logged in */}
+            <Route path="/" element={<Navigate to="/nowPlaying" replace />} />
+            <Route path="/create-account" element={<Navigate to="/nowPlaying" replace />} />
+            {/* Catch-all: redirect to overview */}
+            <Route path="*" element={<Navigate to="/nowPlaying" replace />} />
+          </>
+        )}
+      </Routes>
     </BrowserRouter>
- )
-}
+  );
+};
 
 export default App;
