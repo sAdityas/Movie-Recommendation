@@ -6,14 +6,14 @@ import I from "../assests/I.png"
 import A from "../assests/A.png"
 
 export const SelectTheatre = () => {
-  
+
   const getLogo = (name) => {
     if (name.includes("PVR")) return P;
     if (name.includes("INOX")) return I;
     if (name.includes("Abhiruchi")) return A;
     return null; // or a default image
   };
-  
+
   const [selectedTimes, setSelectedTimes] = useState({});
 
   const handleTimeClick = (theatreIndex, time) => {
@@ -33,11 +33,11 @@ export const SelectTheatre = () => {
         sessionStorage.setItem('time',JSON.stringify(times[0]))
         console.log(times)
         return times
-        
+
       }
     });
   };
-  
+
   const handleConfirm = (e) => {
     e.preventDefault()
     window.location.href='/seats'
@@ -91,3 +91,4 @@ export const SelectTheatre = () => {
     </div>
   );
 };
+

@@ -28,3 +28,5 @@ with app.app_context():
     db.session.add(db1)
     db.session.commit()
     print("Done")
+
+

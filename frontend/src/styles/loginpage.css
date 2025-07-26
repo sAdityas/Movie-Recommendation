@@ -6,7 +6,7 @@
     --border: #3d3750;
     --primary: #968ff1;
   }
-  
+
   .login-container {
     display: flex;
     min-height: 100vh;
@@ -15,7 +15,7 @@
     background: #28263a;
     font-family: 'Segoe UI', Arial, sans-serif;
   }
-  
+
   /* Form card with subtle shadow and padding */
   .form-box {
     background: var(--form-bg);
@@ -27,26 +27,26 @@
     text-align: left;
     color: #fff;
   }
-  
+
   .form-box h1 {
     margin-bottom: 3px;
     font-size: 2rem;
     font-weight: 600;
     letter-spacing: 0.01em;
   }
-  
+
   .form-box p {
     color: #bdb2d7;
     font-size: 1rem;
     margin-bottom: 18px;
   }
-  
+
   .form-link {
     color: var(--primary);
     text-decoration: underline;
     font-weight: 500;
   }
-  
+
   .form-input {
     width: 100%;
     font-size: 1.06rem;
@@ -59,12 +59,12 @@
     outline: none;
     transition: border-color 0.2s;
   }
-  
+
   .form-input:focus {
     border-color: var(--primary);
     background: #29234d;
   }
-  
+
   .primary-btn {
     width: 100%;
     background: var(--primary);
@@ -80,7 +80,7 @@
     transition: all 0.2s;
   }
   .primary-btn:hover { background: #6751b2; }
-  
+
   .divider {
     margin: 18px 0 14px 0;
     color: #b7b4c3;
@@ -98,13 +98,13 @@
     background: #3c3450;
     margin: 0 9px;
   }
-  
+
   .social-row {
     display: flex;
     gap: 14px;
     justify-content: center;
   }
-  
+
   .social-btn {
     flex: 1;
     min-width: 110px;
@@ -124,7 +124,7 @@
   .social-btn:hover { background: #332a49; }
   .google-btn { color: #db4437; }
   .apple-btn { color: #444; }
-  
+
   /* Responsive tweaks */
   @media (max-width: 600px) {
     .form-box {
@@ -133,17 +133,18 @@
       padding: 20px 7px 12px;
     }
   }
-  
+
   .message {
     font-size: 0.95rem;
     margin-top: 10px;
   }
-  
+
   .success {
     color: green;
   }
-  
+
   .error {
     color: red;
   }
-  
+
+

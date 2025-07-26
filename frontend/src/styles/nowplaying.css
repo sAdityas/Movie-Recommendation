@@ -13,7 +13,7 @@
     height: 40px;
     margin: 60px auto;
   }
-  
+
   .now-playing-container .loading-spinner {
     position: absolute;
     top: 0;
@@ -26,11 +26,11 @@
     animation: spin 0.01s linear infinite;
     opacity: 0.8;
   }
-  
+
   .delay1 { animation-delay: 0.2s; }
   .delay2 { animation-delay: 0.4s; }
   .delay3 { animation-delay: 0.6s; }
-  
+
 .logout-btn{
   background-color: rgb(208, 4, 4);
 }
@@ -237,3 +237,4 @@
     font-size: 1.5rem;
   }
 }
+

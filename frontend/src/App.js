@@ -23,7 +23,7 @@ function App() {
       <Routes>
         {/* If NOT logged in, allow ONLY '/' and '/create-account' */}
         {!isLoggedIn && !done && (
-          
+
           <>
             <Route path="/" element={<LoginPage />} />
             <Route path="/create-account" element={<CreateAccount />} />
@@ -34,7 +34,7 @@ function App() {
 
         {/* If logged in, allow access to these routes */}
         {isLoggedIn && (
-          
+
           <>
             <Route path="/nowPlaying" element={<NowPlaying />} />
             <Route path="/overview" element={<MovieOverview />} />
@@ -60,3 +60,4 @@ function App() {
 };
 
 export default App;
+

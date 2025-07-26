@@ -19,10 +19,12 @@ def recommend(title, data, cosine_sim, top_n=5):
             return []
         idx = idx_list[0]
 
-            
+
         sim_scores = list(enumerate(cosine_sim[idx]))
         sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)
         top_indices = [i[0] for i in sim_scores[1:top_n + 1]]
         return data['title'].iloc[top_indices].tolist()
     except IndexError:
         return []
+
+

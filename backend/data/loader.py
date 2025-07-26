@@ -16,3 +16,5 @@ def fetch_movies(pages=10):
                 "genre_ids": movie.get("genre_ids", [])
             })
     return pd.DataFrame(movies)
+
+

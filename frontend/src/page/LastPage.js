@@ -34,7 +34,7 @@ export const LastPage = () => {
       time: sessionStorage.getItem('time'),
       price: localStorage.getItem('price')
     };
-  
+
     const response = await fetch("http://localhost:5000/exp/excel", {
       method: "POST",
       headers: {
@@ -42,7 +42,7 @@ export const LastPage = () => {
       },
       body: JSON.stringify(ticketData)
     });
-  
+
     const blob = await response.blob();
     const url = window.URL.createObjectURL(blob);
     const link = document.createElement("a");
@@ -58,13 +58,13 @@ export const LastPage = () => {
   };
 
   const navigateHome = () => {
-    
+
     sessionStorage.clear()
     setIsHomeClicked(true)
     localStorage.removeItem('price')
     setTimeout(() => navigate('/nowPlaying', { replace: true }), 2000);
   }
-  
+
 
   return (
     <div className="last-page-container">
@@ -76,7 +76,7 @@ export const LastPage = () => {
         </div>
       )}
       {!isHomeClicked && (
-        
+
         <div className="ticket-card">
           <p><strong>Booking ID:</strong> {bookingData.bookingId}</p>
           <p><strong>Seats:</strong> {bookingData.seats.join(', ')}</p>
@@ -90,3 +90,4 @@ export const LastPage = () => {
     </div>
   );
 };
+

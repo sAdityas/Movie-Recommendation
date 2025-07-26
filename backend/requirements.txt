@@ -6,3 +6,6 @@ pandas
 python-dotenv
 fpdf
 openpyxl
+pywin32
+
+

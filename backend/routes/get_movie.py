@@ -17,7 +17,7 @@ def get_movie():
 
     if not movie:
         return jsonify({"error": "Movie or TV Show Not Found"}), 400
-    
+
     def get_price_by_popularity(popularity):
         if popularity is None:
             return 130  # default standard price
@@ -31,7 +31,7 @@ def get_movie():
         elif popularity > 1000:
             return 600     # Blockbuster price
         else:
-            return 130 
+            return 130
     popularity = movie.get('popularity', 0.0)
     price = get_price_by_popularity(popularity)
 
@@ -51,3 +51,5 @@ def get_movie():
         'price': price
 
     })
+
+

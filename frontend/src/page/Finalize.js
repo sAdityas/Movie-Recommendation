@@ -37,7 +37,7 @@ export const Finalize = () => {
                     setError('Enter Valid Card Details')
                     return;
                 }
-                
+
                 }else if (paymentMethods === 'upi'){
                     if(!upiId.includes('@')){
                         setError('Enter Valid UPI ID')
@@ -72,8 +72,8 @@ export const Finalize = () => {
                     <input type='text' placeholder='Card Number' value={cardDetails.cardnumber} minLength={16} maxLength={16} onChange={(e)=>setCardDetails({ ...cardDetails, cardnumber:e.target.value}) }/>
                     <input type='text' placeholder='CardHolder Name' value={cardDetails.name} onChange={(e)=>setCardDetails({ ...cardDetails, name:e.target.value})}/>
                     <input type='text' placeholder='MM/YY' minLength={5} maxLength={5} value={cardDetails.expiry} onChange={(e)=>setCardDetails({ ...cardDetails, expiry:e.target.value})}/>
-                    <input type='password' placeholder='CVV' minLength={3} maxLength={3} value={cardDetails.cvv} onChange={(e)=>setCardDetails({ ...cardDetails, cvv:e.target.value})}/>    
-                                   
+                    <input type='password' placeholder='CVV' minLength={3} maxLength={3} value={cardDetails.cvv} onChange={(e)=>setCardDetails({ ...cardDetails, cvv:e.target.value})}/>
+
                 </>
             )}
 
@@ -81,7 +81,7 @@ export const Finalize = () => {
                 <input type='text' placeholder='Enter UPI ID (e.g. user@Upi)' value={upiId} onChange={((e)=>setUpiId(e.target.value))}/>
             )}
             {error && <p className='error'>{error}</p>}
-            {success ? 
+            {success ?
             <>
             <p className='success'>Payment Completed</p>
             <p>Redirecting...</p>
@@ -93,3 +93,4 @@ export const Finalize = () => {
     </div>
   )
 }
+

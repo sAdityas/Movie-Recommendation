@@ -24,5 +24,7 @@ class Ticket(db.Model):
             'price' : self.price,
             'bookingId' : self.bookingId
         }
-        
-    
+
+
+
+

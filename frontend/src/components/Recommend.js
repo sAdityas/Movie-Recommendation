@@ -17,14 +17,14 @@ const [movies, setMovies] = useState([]);
       {
       method: 'GET',
       headers: {
-        'Content-Type': 'application/json', 
+        'Content-Type': 'application/json',
       }
     });
     response.data ? setMovies([response.data]) : setMovies([]);
     setLoading(false);
     setClicked(false);
-  
-  
+
+
     const res = await axios.get(`http://localhost:5000/recommend?id=${id}`,
     {
       method: 'GET',
@@ -44,7 +44,7 @@ const [movies, setMovies] = useState([]);
     setClicked(false);
     setMovies([]);
   }
-  
+
   }
   return (
   <div className="App">
@@ -98,7 +98,7 @@ const [movies, setMovies] = useState([]);
       {!loading && movies.length >= 1 && (
         <div className="recommendations-section">
           <h2>Recommendations Based on "{movies[0].title}"</h2>
-          
+
           {recs.length === 0 && loading? (
             <>
             <span className='loading-spinner'/>
@@ -138,3 +138,4 @@ const [movies, setMovies] = useState([]);
 }
 
 export default Recommend;
+

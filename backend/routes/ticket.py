@@ -56,7 +56,7 @@ def get_seat():
             all_seats.extend(ticket.seats)  # PickleType field is already a list
 
     print("Disabled seats for", title, "at", time, "=>", all_seats)
-    
+
     return jsonify({
         'seats': all_seats
     })
@@ -76,4 +76,6 @@ def finalize(userid):    # Query all tickets for user_id
     return jsonify({
         "data": tickets_data
     })
+
+
 

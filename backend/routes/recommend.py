@@ -37,3 +37,5 @@ def get_recommendations():
         'input_title': title,
         'recommendations': detailed_recs
     })
+
+

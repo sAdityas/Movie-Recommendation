@@ -68,3 +68,5 @@ def export_excel():
     convert_excel_to_pdf(filled_excel_path, filled_pdf_path)
 
     return send_file(filled_pdf_path, as_attachment=True)
+
+

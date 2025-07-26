@@ -46,10 +46,10 @@ export const SeatSelect = () => {
     setSelectedSeats(seatsFromStorage);
     setUserId(parseInt(localStorage.getItem('userID'),10))
   }, []);
-  
 
-  
-  
+
+
+
   const isBooked = (seatId) => bookedSeats.includes(seatId);
   const toggleSeat = (seatId) => {
     setSelectedSeats((prev) => {
@@ -175,3 +175,4 @@ export const SeatSelect = () => {
     </div>
   );
 };
+

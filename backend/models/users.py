@@ -10,3 +10,5 @@ class User(db.Model):
     passwd = db.Column(db.String(255), nullable=False)
 
     tickets = db.relationship('Ticket',back_populates='user',cascade='all,delete-orphan')
+
+

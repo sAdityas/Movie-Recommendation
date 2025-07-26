@@ -6,14 +6,14 @@
     display: flex; /* good for clearfix, keeps container height */
     flex-direction: column;
   }
-  
+
   .heading {
     margin-bottom: 20px;
     font-size: 24px;
     font-weight: bold; /* optionally add bold for headings */
     color: #fff;        /* assuming dark bg, white text looks better */
   }
-  
+
   .ticket-card {
     background: #2c2c3e;
     padding: 20px;
@@ -22,7 +22,7 @@
     color: #eee;           /* text color for readability in dark bg */
     margin-bottom: 15px;   /* add some spacing if multiple cards */
   }
-  
+
   .download-btn {
     margin-top: 20px;
     padding: 10px 20px;
@@ -34,11 +34,11 @@
     transition: background-color 0.3s ease;
     font-size: 16px;
   }
-  
+
   .download-btn:hover {
     background-color: #45a049;
   }
-  
+
   .home-btn {
     margin: 10px 0;
     padding: 10px 20px;
@@ -54,8 +54,9 @@
     align-items: center;
     transition: background-color 0.3s ease;
   }
-  
+
   .home-btn:hover {
     background-color: #1976D2;
   }
-  
+
+

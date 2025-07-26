@@ -57,14 +57,14 @@ export const MovieOverview = () => {
         }}
       />
       <div className="overview-overlay" />
-        
+
       {/* Main Content */}
       <div className="overview-container">
-        
+
         <div className="movie-overview">
-            
+
           <div className="poster-wrapper">
-            
+
             {/* Foreground Poster */}
             <img
               className="movie-poster"
@@ -76,7 +76,7 @@ export const MovieOverview = () => {
               alt="Movie Poster"
             />
           </div>
-              
+
           <div className="details-section">
             {movie.title === movie.original_title && (
                <> <h1 className="movie-title">{movie.title}</h1>
@@ -87,7 +87,7 @@ export const MovieOverview = () => {
                 <h3 className="movie-title">{movie.original_title}</h3>
                 <h5 className='tagLine'>{movie.tagline}</h5></>
             )}
-            
+
             <div className="rating-row">
               <span className="star">⭐</span>
               <span className="rating">{movie.vote_average}/10</span>
@@ -97,7 +97,7 @@ export const MovieOverview = () => {
                     <span>🎭Genre: </span>
                     {movie.genre_names.map((genre,id) => (
                         <React.Fragment key={id}>
-                        
+
                         <span key={id} className='genre-badge'>{genre.name}</span>
                         {id < movie.genre_names.length - 1 && (
                             <span> / </span>
@@ -114,7 +114,7 @@ export const MovieOverview = () => {
               <span className='price-span'>Price: {movie.price}</span>
             </div>
             <button className="book-btn" onClick={(e) => {window.location.href='/theatre'; e.preventDefault()}}>Book Tickets</button>
-            
+
           </div>
         </div>
 
@@ -126,3 +126,4 @@ export const MovieOverview = () => {
     </div>
   );
 };
+

@@ -19,11 +19,11 @@ def create():
     lastname = data.get('lastname')
     email = data.get('email')
     passwd = data.get('passwd')
-    
+
     user_exists = User.query.filter_by(email=email).first()
     if user_exists:
         return jsonify({"error": "User Already Exists with this Email Id"}), 400
-    
+
     hashed_password = generate_password_hash(passwd)
 
     new_user = User(
@@ -54,3 +54,5 @@ def login():
         return jsonify({'success': 'Login Successful', 'id' : f"{user.id}"}), 200
     else:
         return jsonify({'error': 'Wrong Password Entered'}), 401
+
+

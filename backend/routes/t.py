@@ -60,3 +60,5 @@ add_label_value("Booking ID", ticket_data["bookingId"])
 
 # Save PDF
 pdf.output("invoice_ticket.pdf")
+
+

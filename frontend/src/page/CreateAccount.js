@@ -77,7 +77,7 @@ export const CreateAccount = () => {
       alert(res.data.message || "User Created Successfully");
     } catch (err) {
       console.error("❌ Error creating user:", err.response.data.error);
-      
+
       const errorMsg = err.response?.data?.error;
       alert(errorMsg);
     }
@@ -156,7 +156,7 @@ export const CreateAccount = () => {
               <span className="checkbox-custom"></span>
               I agree to the <a href="#" className="form-link">Terms & Conditions</a>
             </label>
-            <button type="subimit" className="primary-btn" 
+            <button type="subimit" className="primary-btn"
   disabled={!form.firstname || !form.lastname || !form.email || !form.passwd || !form.agree} onClick={() => navigate('/',{replace: true})}>Create account</button>
           </form>
         </div>
@@ -164,3 +164,4 @@ export const CreateAccount = () => {
     </div>
   );
 };
+

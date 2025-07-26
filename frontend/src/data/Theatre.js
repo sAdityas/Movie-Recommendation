@@ -25,4 +25,5 @@ export const theatres = [
       timings: ['10:00', '12:45', '15:30', '20:00']
     },
   ];
-  
+
+

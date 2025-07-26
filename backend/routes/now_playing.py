@@ -12,7 +12,7 @@ def now_playing():
     base_url = "https://api.themoviedb.org/3/discover/movie"
     hindiURL = f"{base_url}?api_key={TMDB_API_KEY}&region=IN&with_original_language=hi&with_release_type=2"
     englishURL = f"{base_url}?api_key={TMDB_API_KEY}&region=IN&with_original_language=en&with_release_type=2"
-    
+
     def process(movies):
 
         return [{
@@ -27,7 +27,7 @@ def now_playing():
             ),
             "poster_path": f"{image_base}{m.get('poster_path')}" if m.get('poster_path') else None,
             "vote_average" : m.get('vote_average',0.0)
-            
+
         } for m in movies[:10]]
 
     hindi_movies = requests.get(hindiURL).json().get('results', [])
@@ -35,3 +35,5 @@ def now_playing():
     combined = process(hindi_movies) + process(english_movies)
 
     return jsonify({'now_playing': combined})
+
+

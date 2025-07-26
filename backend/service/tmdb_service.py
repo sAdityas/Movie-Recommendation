@@ -11,3 +11,5 @@ def get_movie_by_tmdb(tmdb_id):
     url = f"https://api.themoviedb.org/3/movie/{tmdb_id}?api_key={TMDB_API_KEY}"
     data = requests.get(url).json()
     return data if data.get('id') else None
+
+
