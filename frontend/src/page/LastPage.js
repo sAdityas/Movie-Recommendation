@@ -4,6 +4,7 @@ import '../styles/LastPage.css'; // 👈 Import external stylesheet
 
 export const LastPage = () => {
     const navigate = useNavigate()
+    const [isHomeClicked, setIsHomeClicked] = useState(false)
   const [bookingData, setBookingData] = useState({
     bookingId: '',
     seats: [],
@@ -46,16 +47,20 @@ export const LastPage = () => {
     const url = window.URL.createObjectURL(blob);
     const link = document.createElement("a");
     link.href = url;
-    link.setAttribute("download", `${ticketData.title}.xlsx`);
+    link.setAttribute("download", `${ticketData.title}.pdf`);  // ← changed to .pdf
     document.body.appendChild(link);
     link.click();
-    sessionStorage.clear()
-    localStorage.removeItem('price')
+    document.body.removeChild(link);  // clean up
+    window.URL.revokeObjectURL(url);  // free memory
+
+    sessionStorage.clear();
+    localStorage.removeItem('price');
   };
 
   const navigateHome = () => {
     
     sessionStorage.clear()
+    setIsHomeClicked(true)
     localStorage.removeItem('price')
     setTimeout(() => navigate('/nowPlaying', { replace: true }), 2000);
   }
@@ -63,17 +68,25 @@ export const LastPage = () => {
 
   return (
     <div className="last-page-container">
-      <h2 className="heading">🎟️ Your Booking Details</h2><span/><button className='home-btn' onClick={navigateHome}>Home</button>
-      
-      <div className="ticket-card">
-        <p><strong>Booking ID:</strong> {bookingData.bookingId}</p>
-        <p><strong>Seats:</strong> {bookingData.seats.join(', ')}</p>
-        <p><strong>Price:</strong> ₹{bookingData.price}</p>
-        <p><strong>Movie Title:</strong> {bookingData.title}</p>
-        <button className="download-btn" onClick={downloadExcel}>
-          📥 Download Invoice
-        </button>
-      </div>
+      <h2 className="heading">🎟️ Your Booking Details</h2>
+      <button className='home-btn' onClick={navigateHome}>Home</button>
+      {isHomeClicked && (
+        <div>
+           <h2 className='heading'>Thank You! 😊</h2>
+        </div>
+      )}
+      {!isHomeClicked && (
+        
+        <div className="ticket-card">
+          <p><strong>Booking ID:</strong> {bookingData.bookingId}</p>
+          <p><strong>Seats:</strong> {bookingData.seats.join(', ')}</p>
+          <p><strong>Price:</strong> ₹{bookingData.price}</p>
+          <p><strong>Movie Title:</strong> {bookingData.title}</p>
+          <button className="download-btn" onClick={downloadExcel}>
+            📥 Download Invoice
+          </button>
+        </div>
+      )}
     </div>
   );
 };

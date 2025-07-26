@@ -5,6 +5,15 @@
   min-height: 100vh;
 }
 
+.loading-section{
+  display: flex;
+  flex-direction: column;
+}
+.loading-spinner{
+  align-items: center;
+  justify-content: center;
+}
+
 /* Blurred Background */
 .overview-bg {
   position: fixed;

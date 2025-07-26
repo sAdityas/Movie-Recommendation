@@ -42,14 +42,33 @@
 .location {
   margin-top: 10px;
 }
+.theatre-logo {
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* aligns logo to the left */
+  justify-content: flex-start; 
+  margin-bottom: 8px;
+  padding-top: 10px;
+}
+
+
+/* Optional class to style specific background */
+.I {
+  background-color: black !important;
+  color: white; 
+}
 
 /* Theatre logo image */
 .theatre-logo img {
-  width: 60px;
-  height: auto;
-  margin-bottom: 15px;
+  max-height: 80px;
+  width: auto;
   object-fit: contain;
+  display: block;
+  margin: 0;
 }
+
+
 
 /* Movie timing block */
 .movie-timing .timing {

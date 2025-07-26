@@ -8,8 +8,8 @@ import A from "../assests/A.png"
 export const SelectTheatre = () => {
   
   const getLogo = (name) => {
-    if (name.toUpperCase().includes("PVR")) return P;
-    if (name.toUpperCase().includes("INOX")) return I;
+    if (name.includes("PVR")) return P;
+    if (name.includes("INOX")) return I;
     if (name.includes("Abhiruchi")) return A;
     return null; // or a default image
   };
@@ -49,11 +49,14 @@ export const SelectTheatre = () => {
       {theatres.map((theatre, index) => (
         <div className="theatre" key={index}>
           <div className="theatre-name">
+          {
+        console.log(getLogo(theatre.name))
+        }
             <label>{theatre.name}</label>
           </div>
 
           <div className="theatre-logo">
-            <img src={getLogo[theatre.name]} alt={theatre.name} />
+            <img src={getLogo(theatre.name)} className={`${theatre.name[0]}`} alt={theatre.name} />
           </div>
 
           <div className="movie-timing">
